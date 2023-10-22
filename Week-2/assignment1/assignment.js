@@ -60,7 +60,26 @@ const pokemons = [
       totalElectricExperience
   );
   
-  //Pokemon dizisinde, her türdeki Pokemon'ların deneyim puanlarının ortalamasını hesaplamak istiyorsunuz.
-  const typeExperienceAverages=pokemons.reduce((accumulator, currentValue)=> accumulator+currentValue.experience,accumulator=0)/pokemons.length;
-  
-  console.log(`Pokemon deneyim puanları ortalaması = ${typeExperienceAverages} yuvarlanmış hali ${Math.ceil(typeExperienceAverages)}`);
+  //Pokemon dizisinde, her türdeki Pokemon'ların deneyim puanlarının ortalamasını ayrı ayrı hesaplamak istiyorsunuz.
+  //const typeExperienceAverages=pokemons.reduce((accumulator, currentValue)=> accumulator+currentValue.experience,accumulator=0)/pokemons.length;
+  const typeExperienceTotals = {};
+const typeCounts = {};
+
+// Her Pokemon'u dönerek türlerin deneyim puanlarını topla ve say
+pokemons.forEach(pokemon => {
+    const { type, experience } = pokemon;
+    if (typeExperienceTotals[type] === undefined) {
+        typeExperienceTotals[type] = 0;
+        typeCounts[type] = 0;
+    }
+    typeExperienceTotals[type] += experience;
+    typeCounts[type]++;
+});
+
+// Her türün deneyim puanı ortalamasını hesapla
+const typeAverages = {};
+for (const type in typeExperienceTotals) {
+    typeAverages[type] = typeExperienceTotals[type] / typeCounts[type];
+}
+
+console.log(typeAverages);
