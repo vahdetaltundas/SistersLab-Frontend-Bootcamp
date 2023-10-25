@@ -83,3 +83,4 @@ for (const type in typeExperienceTotals) {
 }
 
 console.log(typeAverages);
+ 
