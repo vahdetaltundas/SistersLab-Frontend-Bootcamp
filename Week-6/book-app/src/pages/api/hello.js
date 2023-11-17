@@ -11,6 +11,11 @@ export const fetchBooks= async()=>{
   return response.data;
 }
 
+export const fetchBook= async(id)=>{
+  const response=await axiosInstance.get(`/books/${id}`);
+  return response.data;
+}
+
 export const deleteBook= async(id)=>{
   const response = await axiosInstance.delete(`/books/${id}`);
   return response.data;
